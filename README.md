@@ -18,6 +18,52 @@
 - More efficient: tests are re-ran "for free" after changes. If the tests are built after writing the actual code, there is no advantage of running the tests as the the code progresses.
 - Better code: We have to plan to write the code (better organized); The code is more testable (no rewriting code for tests); The code will has fewer bugs (caught sooner, regression); We have great code coverage (testing is a part of coding)
 
+#### What does Enzyme Do?
+
+- Create virtual DOM for testing
+- Allow testimg without a browser
+
+#### Enzyme vs React Testing Library
+
+- Both libraries create virtual DOM
+- Mostly philosophical differences
+- Enzyme supports isolated testing (support testing componets in insolation from its children such as shallow rendering)
+- React Testing Library strongly prefers functional testing: Interacting as a user would (make the test less isolated)
+
+#### Why to choose Enzyme?
+
+- More traditional testing style: Test tightly coupled with code; Unit tests are very isolated; Tests are easy to dignose
+- Functional user flow tests (with Testing Library): more resilient to refactors (if the code changes in the behavior doesn't, then we don'tneed to update the tests. However, it is difficult to diagnose)
+- Note: code-based testing is possible with Testing Library: but not recommended ("opinionated")
+- Enzyme for projects with legacy test code
+
+#### Shallow Rendering
+
+- Render components only one level deep
+- Render parent, but use placeholders for children
+  exp:
+
+```js
+<div id="word-input-form>
+    <p>Enter word here</p>
+    <InputComponent />
+    <SubmitComponent />
+</div>
+```
+
+--> Here InputComponent and SubmitComponent are children components but we dont actually see the internals of those.
+While with Mount:
+
+```js
+<div id="word-input-form>
+    <div>
+        <span>Enter some text</span>
+        <input type="text" />
+    </div>
+    <button type="submit">Submit</button>
+</div>
+```
+
 ### Setting up Jest without create-react-app
 
 - Jest Documentation: https://jestjs.io/docs/getting-started
