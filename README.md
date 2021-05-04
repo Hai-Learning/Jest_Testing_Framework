@@ -97,3 +97,23 @@ test("renders without error", () => {});
 
 - Simply initiallize the the app with create-react-app and ready to go: `npx create-react-app app-name`
 - Run the test with watch mode: npm test
+
+### Enzyme
+
+#### Enzyme Installation
+
+- `npm install --save-dev enzyme @wojtekmaj/enzyme-adapter-react-17` (where @wojtekmaj/enzyme-adapter-react-17 is an unofficial react adapter for enzyme)
+
+- In the test file said App.test.js:
+
+```js
+import React from "react";
+import Enzyme from "enzyme";
+import EnzymeAdapter from "@wojtekmaj/enzyme-adapter-react-17";
+import App from "./App";
+
+// configure Enzyme (move out later)
+Enzyme.configure({ adapter: new EnzymeAdapter() });
+
+test("renders learn react link", () => {});
+```
