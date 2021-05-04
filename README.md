@@ -19,6 +19,24 @@
 - Can be any of the above; The distiguishing factor for functional tests is that they focus on user flow (an actual fuction of the app). They are easier to diagnose because we know exactly which part of the code caused the test to fail
 - Code-based tests == testing implementation
 
+### Testing Tradeoffs
+
+#### Test Behavior, not Implementation
+
+- Ideally, do not want to re-write tests after a refactor
+- Keep in mind when writing tests
+- Test behavior (what the app should do) instead of implementation (how it works)
+- Then, if implementation changes, tests remain the same: Testing implementation is brittle (easily broken when app still works)
+- Example for feature to test: The app keeps counter of button click count -> onClick function for button calls incrementCounter function -> counter display increments by one
+- Example for testing behavior: set initial state -> simulate button click -> check displayed count to see that it was incremented by one from the initial state
+- Example for testing implementation: set initial state -> simulate button click -> check to see if particular function was called (whether the code is going through the right stages to cause that behavior)
+- Why brittle? Testing implementation (function name can change) not behavior (display update)
+
+#### Testing goal
+
+1. Easy of maintenance for tests
+2. Easy diagnosis of failing tests
+
 ## Introduction to Jest, Enzyme and Test-Driven Development (TDD)
 
 ### TDD
