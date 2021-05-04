@@ -117,3 +117,6 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 test("renders learn react link", () => {});
 ```
+
+- Shallow: takes JSX and return the so-called shallow wrapper:
+  `const wrapper = shallow(<App />)` after `import Enzyme, { shallow } from "enzyme";`
