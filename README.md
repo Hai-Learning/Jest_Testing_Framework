@@ -1,5 +1,24 @@
 # React Testing with Jest and Enzyme
 
+## Types of Tests
+
+### Unit tests
+
+- Tests one piece of code (usually one function or one React component) -> very isolated and narrow
+
+### Integration tests
+
+- How multiple units work together
+
+### Acceptance / End-to-end (E2E) Tests
+
+- Uses actual brower and connections to server (tools like: Selenium to simulate the brower experience)
+
+### Functional Tests
+
+- Can be any of the above; The distiguishing factor for functional tests is that they focus on user flow (an actual fuction of the app). They are easier to diagnose because we know exactly which part of the code caused the test to fail
+- Code-based tests == testing implementation
+
 ## Introduction to Jest, Enzyme and Test-Driven Development (TDD)
 
 ### TDD
