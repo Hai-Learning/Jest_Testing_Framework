@@ -118,6 +118,22 @@ While with Mount:
 </div>
 ```
 
+### Strategies and Design Decisions
+
+#### DRY pros and cons
+
+- DRY = Don't Repeat Yourself
+- Goals for test code not the same as for production code
+- Wait failing tests to be easy to diagnose
+- Sometimes this means repeated code
+- Balance between DRY and easily diagnosed tests
+
+#### One expect per test
+
+- Test descriptions provide better documentation
+- Failure counts give better indication of state of code: Test stops at first failure (will not try to run the rest of the assertions)
+- Can use beforeEach() for common setup
+
 ### Setting up Jest without create-react-app
 
 - Jest Documentation: https://jestjs.io/docs/getting-started
