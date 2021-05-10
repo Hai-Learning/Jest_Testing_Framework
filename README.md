@@ -37,6 +37,15 @@
 1. Easy of maintenance for tests
 2. Easy diagnosis of failing tests
 
+#### Why not snapshot testing?
+
+- Jest includes "snapshot testing" as a way to "free" a component or other output in time -> when we re-run the test, if test fails if there are any changes
+- No TDD
+- Brittle (any change to component will break the test)
+- Difficult to diagnose: too easy to ignore failure and update the snapshot
+- No test intention: if there is a failure, we dont know if the code still meet spec?
+-
+
 ## Introduction to Jest, Enzyme and Test-Driven Development (TDD)
 
 ### TDD
@@ -73,6 +82,14 @@
 - Functional user flow tests (with Testing Library): more resilient to refactors (if the code changes in the behavior doesn't, then we don'tneed to update the tests. However, it is difficult to diagnose)
 - Note: code-based testing is possible with Testing Library: but not recommended ("opinionated")
 - Enzyme for projects with legacy test code
+
+### Data-test attributes
+
+- Data-test attribute to test rendering: top level element of component
+- Not just any component rendered! but it's actually the component that we wanted.
+- Why new attribute? Why not id or class? id and class have uses in production app; might get changed in the future, data-test is only for testing; conventional, but we could choose any name;
+- Don't want in production? Many people don't want these data test attributes to be in their production apps, they want their production apps to be smaller and more streamlined.
+- How to remove in production?
 
 #### Shallow Rendering
 
@@ -157,3 +174,29 @@ test("renders learn react link", () => {});
 
 - Shallow: takes JSX and return the so-called shallow wrapper:
   `const wrapper = shallow(<App />)` after `import Enzyme, { shallow } from "enzyme";`
+
+## Examples
+
+### Clicking Counter
+
+- Create a react app using create-react-app
+- install enzyme: `npm install --save-dev enzyme @wojtekmaj/enzyme-adapter-react-17`
+- data-test attributes: In a div, place a `data-test=""`
+- Shallow anzyme selectors: `wrapper.find(selector)` => shallowWrapper (selector is CSS selector like: `input`, `button`, tag name, `.className`, `#id`, `[href="foo"]`, `[type="text"]` ...)
+  Component
+
+```js
+function App() {
+  return <div className="App" data-test="component-app"></div>;
+}
+```
+
+Test
+
+```js
+test("renders without error", () => {
+  const wrapper = shallow(<App />);
+  const appComponent = wrapper.find("[data-test='component-app']");
+  expect(appComponent.length).toBe(1);
+});
+```
