@@ -89,7 +89,7 @@
 - Not just any component rendered! but it's actually the component that we wanted.
 - Why new attribute? Why not id or class? id and class have uses in production app; might get changed in the future, data-test is only for testing; conventional, but we could choose any name;
 - Don't want in production? Many people don't want these data test attributes to be in their production apps, they want their production apps to be smaller and more streamlined.
-- How to remove in production?
+- How to remove in production? using `babel-plugin-react-remove-properties`
 
 #### Shallow Rendering
 
@@ -181,6 +181,9 @@ test("renders learn react link", () => {});
 
 - Create a react app using create-react-app
 - install enzyme: `npm install --save-dev enzyme @wojtekmaj/enzyme-adapter-react-17`
+
+#### data-test attributes
+
 - data-test attributes: In a div, place a `data-test=""`
 - Shallow anzyme selectors: `wrapper.find(selector)` => shallowWrapper (selector is CSS selector like: `input`, `button`, tag name, `.className`, `#id`, `[href="foo"]`, `[type="text"]` ...)
   Component
@@ -200,3 +203,17 @@ test("renders without error", () => {
   expect(appComponent.length).toBe(1);
 });
 ```
+
+- To remove data-test attributes (if we dont want these attributes showing in client browsers), we use `babel-plugin-react-remove-properties`: `npm install --save-dev babel-plugin-react-remove-properties`; then run: `npm run eject` (for using create-react-app app) -> it takes the configuration files and it makes them editable by us (need to do git commit to run the ejection) -> Now we can change the babel settings. Then updating the babel config in the `package.json` or elsewhere:
+
+```js
+"env": {
+  "production": {
+    "plugins": {
+      ["react-remove-properties"], {"properties": ["data-test"]}
+    }
+  }
+}
+```
+
+When using this, we do `npm run build` to build the production bundle -> data-test attributes are gone!
