@@ -233,3 +233,19 @@ test("renders without error", () => {
 ```
 
 When using this, we do `npm run build` to build the production bundle -> data-test attributes are gone!
+
+### Jotto App - Word guessing app
+
+#### Plan of Attack
+
+1. Congrats and GuessedWords Components:
+
+- Testing with props: hand down state from parents; don't need Redux or Context; can skip props testing if we use TypeScript;
+- Set up common tools: define functions in helper file; set up Enzyme for every file via Jest config
+
+2. Input and App Components
+
+- `Input`: state-controlled field; `useState` hook
+- `App`: get secret word on mount: `useEffect` hook to fetch data from server
+
+3. Complete project with Redux or Context or both
