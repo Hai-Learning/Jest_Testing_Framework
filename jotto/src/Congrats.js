@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function Congrats({ success }) {
+const Congrats = ({ success }) => {
   if (success) {
     return (
       <div data-test="component-congrats">
@@ -13,4 +13,10 @@ export default function Congrats({ success }) {
   } else {
     return <div data-test="component-congrats"></div>;
   }
-}
+};
+
+Congrats.propTypes = {
+  success: PropTypes.bool.isRequired,
+};
+
+export default Congrats;
