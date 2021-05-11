@@ -249,3 +249,34 @@ When using this, we do `npm run build` to build the production bundle -> data-te
 - `App`: get secret word on mount: `useEffect` hook to fetch data from server
 
 3. Complete project with Redux or Context or both
+
+#### Implementing the project (important note only)
+
+##### Check Prop Type
+
+- to test props type (not needed in TypeScript), install check-prop-types: `npm install --save prop-types` for components and `npm install --save-dev check-prop-types --legacy-peer-deps` for testing.
+- In a component:
+
+- For its test, creat a checkProp function in the testUltis file:
+
+```js
+export const checkProp = (component, conformingProps) => {
+  const propError = checkPropTypes(
+    component.propTypes,
+    conformingProps,
+    "prop",
+    component.name
+  );
+
+  expect(propError).toBeUndefined();
+};
+```
+
+component's test file:
+
+```js
+test("does not throw warning with expected props", () => {
+  const expectedProps = { success: false };
+  checkProps(Congrats, expectedProps);
+});
+```
